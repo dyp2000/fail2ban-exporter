@@ -1,0 +1,12 @@
+[Unit]
+Description=Fail2ban Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=prometheus
+ExecStart=/home/prometheus/fail2ban-exporter/fail2ban-exporter"
+ExecStop=kill -p `ps ax | grep fail2ban-exporter | grep -v grep | awk '{print $1}'`
+
+[Install]
+WantedBy=default.target
