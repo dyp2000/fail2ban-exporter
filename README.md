@@ -24,6 +24,12 @@ Required packages:
 | -version |  | Show version |
 | -h |  | Show help |
 
+`-engine` key supported values:
+
+- `ip2c` - get info from ip2c.org. Unlimited, just be reasonable. Currently ip2c.org can sustain a maximum of about 30 million per day.
+- `geoiplookup` - use geoiplookup console util (fastest method. Linux only).
+- `freegeoip` - get info from https://freegeoip.app. Not released.
+
 ### Configure Systemd daemon
 
 Copy file `fail2ban-exporter.service` from project to `/etc/systemd/system` directory.
