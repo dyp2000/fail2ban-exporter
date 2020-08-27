@@ -7,6 +7,7 @@ Yet another Fail2ban exporter
 #### From source
 
 You can clone this repository from git https://github.com/dyp2000/fail2ban-exporter.git.
+
 Then all you have to do is run `make all` and you're done!
 
 Required packages:
