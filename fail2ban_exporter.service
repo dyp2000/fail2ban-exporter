@@ -5,7 +5,9 @@ After=network-online.target
 
 [Service]
 User=prometheus
-ExecStart=/home/prometheus/fail2ban-exporter/fail2ban-exporter"
+ExecStart=/home/prometheus/fail2ban_exporter/fail2ban-exporter \
+    -engine geoiplookup
+
 ExecStop=kill -p `ps ax | grep fail2ban-exporter | grep -v grep | awk '{print $1}'`
 
 [Install]

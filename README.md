@@ -4,6 +4,10 @@ Yet another Fail2ban exporter
 
 ### Installation
 
+### Supported OS
+
+Tested on CentOS 7.x
+
 #### From source
 
 You can clone this repository from git https://github.com/dyp2000/fail2ban-exporter.git.
