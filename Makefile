@@ -19,7 +19,8 @@ debug: ## Compile project with debug info
 	cd ./src && go build -v -o ${OUT_DIR}/${APP}
 
 release: ## Compile project Release
-	cd ./src && go build -v -ldflags "-s -w" -o ${OUT_DIR}/${APP}
+	cd ./src && env GOOS=darwin GOARCH=amd64 go build -v -ldflags "-s -w" -o ${OUT_DIR}/${APP}-darwin-amd64
+	cd ./src && env GOOS=linux GOARCH=amd64 go build -v -ldflags "-s -w" -o ${OUT_DIR}/${APP}-linux-amd64
 
 clear: ## Clear caches, objects fns other
 	go clean
