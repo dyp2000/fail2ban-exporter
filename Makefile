@@ -13,7 +13,7 @@ help: ## Show this help
 	@echo
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  \033[33m%-15s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
-all: clear packages release ## Full build project
+all: clear release ## Full build project
 
 debug: ## Compile project with debug info
 	cd ./src && go build -v -o ${OUT_DIR}/${APP}
@@ -27,5 +27,3 @@ clear: ## Clear caches, objects fns other
 
 packages: ## Install required packages
 	go get -v -u github.com/prometheus/client_golang/prometheus
-	go get -v -u github.com/prometheus/client_golang/prometheus/promauto
-	go get -v -u github.com/prometheus/client_golang/prometheus/promhttp

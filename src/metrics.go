@@ -122,8 +122,6 @@ func GeoIPLookup(cmd *string, ipList *[]string) map[string]int {
 
 // FreeGeoIP ...
 func FreeGeoIP(cmd *string, ipList *[]string) map[string]int {
-	for {
-		//
-		time.Sleep(time.Minute)
-	}
+	//
+	return make(map[string]int)
 }
