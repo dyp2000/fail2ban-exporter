@@ -3,3 +3,7 @@
 *.sublime-workspace
 go.sum
 *.gz
+vendor
+fail2ban-exporter
+fail2ban-exporter-darwin-amd64
+fail2ban-exporter-linux-amd64

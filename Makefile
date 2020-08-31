@@ -4,8 +4,10 @@
 
 .DEFAULT_GOAL := help
 
-OUT_DIR ?= ../bin
+OUT_DIR ?= .
 APP ?= fail2ban-exporter
+LINUX ?= -linux-amd64
+DARWIN ?= -darwin-amd64
 
 help: ## Show this help
 	@echo "Make Fail2ban-exporter project"
@@ -13,18 +15,19 @@ help: ## Show this help
 	@echo
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  \033[33m%-15s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
-all: clear release ## Full build project
+all: clear packages release ## Full build project
+
+clear: ## Clear caches, objects fns other
+	go clean
+	rm -f ${OUT_DIR}/${APP}-${DARWIN}
+	rm -f ${OUT_DIR}/${APP}-${LINUX}
+
+packages: ## Install required packages
+	go mod vendor -v
 
 debug: ## Compile project with debug info
 	cd ./src && go build -v -o ${OUT_DIR}/${APP}
 
 release: ## Compile project Release
-	cd ./src && env GOOS=darwin GOARCH=amd64 go build -v -ldflags "-s -w" -o ${OUT_DIR}/${APP}-darwin-amd64
-	cd ./src && env GOOS=linux GOARCH=amd64 go build -v -ldflags "-s -w" -o ${OUT_DIR}/${APP}-linux-amd64
-
-clear: ## Clear caches, objects fns other
-	go clean
-	rm -f ./bin/*
-
-packages: ## Install required packages
-	go get -v -u github.com/prometheus/client_golang/prometheus
+	env GOOS=darwin GOARCH=amd64 go build -v -ldflags "-s -w" -o ${OUT_DIR}/${APP}${DARWIN} -i ./cmd/${APP}
+	env GOOS=linux GOARCH=amd64 go build -v -ldflags "-s -w" -o ${OUT_DIR}/${APP}${LINUX} -i ./cmd/${APP}
