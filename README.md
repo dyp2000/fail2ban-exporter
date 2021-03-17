@@ -58,4 +58,4 @@ systemctl status fail2ban-exporter
 
 For Grafana Worldmap Panel use query: `sum(fail2ban_hackers_locations{jail="sshd"}) by (location)`
 
-Install Worldmap Panel see [there](https://grafana.com/grafana/plugins/grafana-worldmap-panel/installation)
+Install Worldmap Panel see [there](https://grafana.com/grafana/plugins/grafana-worldmap-panel/)
